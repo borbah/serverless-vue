@@ -1,0 +1,14 @@
+{
+  "name": "serverless-vue",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/borbah/serverless-vue.git",
+  "author": "Adam Romanski",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "serverless-http": "^1.5.5",
+    "vue": "^2.5.16",
+    "vue-server-renderer": "^2.5.16"
+  }
+}
