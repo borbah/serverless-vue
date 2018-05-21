@@ -18,5 +18,5 @@ functions:
       - http: 'ANY {proxy+}'
 custom:
   client:
-   bucketName: bodychange-test-public-20180521
+   bucketName: s3bucketname
    distributionFolder: templates/
