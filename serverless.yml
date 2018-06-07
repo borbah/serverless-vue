@@ -1,8 +1,4 @@
 service: my-express-application
-plugins:
-  - serverless-finch
-  - serverless-offline
-  - serverless-webpack
 
 provider:
   name: aws
@@ -16,7 +12,5 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
-custom:
-  client:
-   bucketName: s3bucketname
-   distributionFolder: templates/
+      - method: get
+      - cors: true

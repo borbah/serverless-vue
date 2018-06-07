@@ -7,10 +7,9 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.3",
-    "serverless-finch": "2.1.2",
+    "serverless-finch": "^2.1.2",
     "serverless-http": "^1.5.5",
     "serverless-offline": "3.23.0",
-    "serverless-webpack": "5.1.5",
     "vue": "^2.5.16",
     "vue-server-renderer": "^2.5.16"
   },
@@ -23,8 +22,5 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1",
     "serverless-offline": "^3.20.3",
-    "serverless-webpack": "^5.1.5",
-    "webpack": "^4.7.0",
-    "webpack-node-externals": "^1.7.2"
   }
 }

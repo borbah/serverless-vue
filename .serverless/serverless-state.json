@@ -6,10 +6,10 @@
     },
     "provider": {
       "stage": "dev",
-      "region": "us-east-1",
+      "region": "eu-central-1",
       "variableSyntax": "\\${([ ~:a-zA-Z0-9._'\",\\-\\/\\(\\)]+?)}",
       "name": "aws",
-      "runtime": "nodejs6.10",
+      "runtime": "nodejs8.10",
       "versionFunctions": true,
       "remoteFunctionData": null,
       "compiledCloudFormationTemplate": {
@@ -92,7 +92,7 @@
                   [
                     "my-express-application",
                     "dev",
-                    "us-east-1",
+                    "eu-central-1",
                     "lambdaRole"
                   ]
                 ]
@@ -106,7 +106,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/my-express-application/dev/1526901878343-2018-05-21T11:24:38.343Z/my-express-application.zip"
+                "S3Key": "serverless/my-express-application/dev/1528351446955-2018-06-07T06:04:06.955Z/my-express-application.zip"
               },
               "FunctionName": "my-express-application-dev-app",
               "Handler": "index.handler",
@@ -117,7 +117,7 @@
                   "Arn"
                 ]
               },
-              "Runtime": "nodejs6.10",
+              "Runtime": "nodejs8.10",
               "Timeout": 6
             },
             "DependsOn": [
@@ -125,14 +125,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AppLambdaVersionxgtqxD0PlW9EQTl8sje3KOSFw6P9pkBOcXLDmLqs": {
+          "AppLambdaVersiontEUdGk2HwhxEUO8DwyLd411yUaXd64dJrZWVM8lRxP4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "T7w+7KJJnMk7kbJCdjr87DQpOR7ecKXCP2fNEam3RZY="
+              "CodeSha256": "Bfrjboifba6MogTtHvs2JLyq5aqRGQI7FZtnvInpv2g="
             }
           },
           "ApiGatewayRestApi": {
@@ -250,7 +250,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1526901878365": {
+          "ApiGatewayDeployment1528351447092": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -320,7 +320,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionxgtqxD0PlW9EQTl8sje3KOSFw6P9pkBOcXLDmLqs"
+              "Ref": "AppLambdaVersiontEUdGk2HwhxEUO8DwyLd411yUaXd64dJrZWVM8lRxP4"
             }
           },
           "ServiceEndpoint": {
@@ -333,7 +333,7 @@
                   {
                     "Ref": "ApiGatewayRestApi"
                   },
-                  ".execute-api.us-east-1.",
+                  ".execute-api.eu-central-1.",
                   {
                     "Ref": "AWS::URLSuffix"
                   },
@@ -371,6 +371,12 @@
           },
           {
             "http": "ANY {proxy+}"
+          },
+          {
+            "method": "get"
+          },
+          {
+            "cors": true
           }
         ],
         "name": "my-express-application-dev-app",
@@ -381,7 +387,7 @@
     "artifact": "/Users/adamromanski/Sites/serverless-vue/.serverless/my-express-application.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/my-express-application/dev/1526901878343-2018-05-21T11:24:38.343Z",
+    "artifactDirectoryName": "serverless/my-express-application/dev/1528351446955-2018-06-07T06:04:06.955Z",
     "artifact": "my-express-application.zip"
   }
 }
