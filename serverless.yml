@@ -7,10 +7,14 @@ provider:
   region: eu-central-1
 
 functions:
-  app:
-    handler: index.handler
+  test:
+    handler: index.test
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
       - method: get
       - cors: true
+
+include:
+  - dist/**
+  - node_modules/**

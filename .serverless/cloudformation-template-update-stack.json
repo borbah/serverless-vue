@@ -5,10 +5,10 @@
     "ServerlessDeploymentBucket": {
       "Type": "AWS::S3::Bucket"
     },
-    "AppLogGroup": {
+    "TestLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/my-express-application-dev-app"
+        "LogGroupName": "/aws/lambda/my-express-application-dev-test"
       }
     },
     "IamRoleLambdaExecution": {
@@ -52,7 +52,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-express-application-dev-app:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-express-application-dev-test:*"
                     }
                   ]
                 },
@@ -63,7 +63,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-express-application-dev-app:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-express-application-dev-test:*:*"
                     }
                   ]
                 }
@@ -85,17 +85,17 @@
         }
       }
     },
-    "AppLambdaFunction": {
+    "TestLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/my-express-application/dev/1528351446955-2018-06-07T06:04:06.955Z/my-express-application.zip"
+          "S3Key": "serverless/my-express-application/dev/1528365547524-2018-06-07T09:59:07.524Z/my-express-application.zip"
         },
-        "FunctionName": "my-express-application-dev-app",
-        "Handler": "index.handler",
+        "FunctionName": "my-express-application-dev-test",
+        "Handler": "index.test",
         "MemorySize": 1024,
         "Role": {
           "Fn::GetAtt": [
@@ -107,18 +107,18 @@
         "Timeout": 6
       },
       "DependsOn": [
-        "AppLogGroup",
+        "TestLogGroup",
         "IamRoleLambdaExecution"
       ]
     },
-    "AppLambdaVersiontEUdGk2HwhxEUO8DwyLd411yUaXd64dJrZWVM8lRxP4": {
+    "TestLambdaVersionpK7PwlL5Q4lJqOcRq6u1VyP9xRFxlk0jdXIlrNT8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "AppLambdaFunction"
+          "Ref": "TestLambdaFunction"
         },
-        "CodeSha256": "Bfrjboifba6MogTtHvs2JLyq5aqRGQI7FZtnvInpv2g="
+        "CodeSha256": "crDqfYCcBfSIW0bllNojevzfI3SA4u1PgOfwtVlfi0I="
       }
     },
     "ApiGatewayRestApi": {
@@ -181,7 +181,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "AppLambdaFunction",
+                    "TestLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -224,7 +224,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "AppLambdaFunction",
+                    "TestLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -236,7 +236,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1528351447092": {
+    "ApiGatewayDeployment1528365547767": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -249,12 +249,12 @@
         "ApiGatewayMethodProxyVarAny"
       ]
     },
-    "AppLambdaPermissionApiGateway": {
+    "TestLambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
           "Fn::GetAtt": [
-            "AppLambdaFunction",
+            "TestLambdaFunction",
             "Arn"
           ]
         },
@@ -303,10 +303,10 @@
         "Ref": "ServerlessDeploymentBucket"
       }
     },
-    "AppLambdaFunctionQualifiedArn": {
+    "TestLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersiontEUdGk2HwhxEUO8DwyLd411yUaXd64dJrZWVM8lRxP4"
+        "Ref": "TestLambdaVersionpK7PwlL5Q4lJqOcRq6u1VyP9xRFxlk0jdXIlrNT8"
       }
     },
     "ServiceEndpoint": {

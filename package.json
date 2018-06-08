@@ -6,21 +6,28 @@
   "author": "Adam Romanski",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.0.0-beta.49",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.49",
+    "@babel/preset-env": "^7.0.0-beta.49",
+    "@babel/preset-stage-3": "^7.0.0-beta.49",
+    "@babel/runtime": "^7.0.0-beta.49",
+    "babel-core": "^7.0.0-bridge.0",
+    "css-loader": "^0.28.11",
     "express": "^4.16.3",
-    "serverless-finch": "^2.1.2",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.3",
     "serverless-http": "^1.5.5",
-    "serverless-offline": "3.23.0",
     "vue": "^2.5.16",
-    "vue-server-renderer": "^2.5.16"
+    "vue-loader": "14.2.2",
+    "vue-router": "^3.0.1",
+    "vue-server-renderer": "^2.5.16",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "3.12.0",
+    "webpack-merge": "^4.1.2",
+    "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
     "aws-sdk": "^2.233.1",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-source-map-support": "^2.0.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-3": "^6.24.1",
-    "serverless-offline": "^3.20.3",
+    "babel-loader": "^8.0.0-beta"
   }
 }

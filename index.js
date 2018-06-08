@@ -1,32 +1,45 @@
 const serverless = require('serverless-http');
-const Vue = require('vue');
 const express = require('express');
-const path = require('path');
-const fs = require('fs');
-const VueServerRenderer = require('vue-server-renderer');
 
-const  server = express();
+const { createBundleRenderer } = require('vue-server-renderer');
 
-server.use('/templates', express.static(path.join(__dirname, 'templates')));
-const indexTemplate =  fs.readFileSync('templates/index.template.html', 'utf-8');
-const otherTemplate =  fs.readFileSync('templates/other.template.html', 'utf-8');
+const serverBundle = require('./dist/vue-ssr-server-bundle.json');
+const clientManifest = require('./dist/vue-ssr-client-manifest.json');
 
-server.get('*', (req, res) => {
-	const renderer = VueServerRenderer.createRenderer({
-		template: indexTemplate
-	});
-	const app = new Vue({
-		data: {
-			url: req.url,
-			custom: 'Dupa',
-		},
-		template: otherTemplate });
-		renderer.renderToString(app, (err, html) => {
-			if (err) {
-				return res.status(500).end('Internal Server Error')
-			}
-			res.status(200).send(html);
-		})
+const renderer = createBundleRenderer(serverBundle, {
+  template: `
+      <html>
+        <head>
+          {{{ renderResourceHints() }}}
+          {{{ renderStyles() }}}
+        </head>
+        <body>
+          <!--vue-ssr-outlet-->
+          {{{ renderState() }}}
+          {{{ renderScripts() }}}
+        </body>
+      </html>
+  `,
+  clientManifest
 });
 
-module.exports.handler = serverless(server);
+const  server = express();
+const createApp = require('./dist/webpack-bundle-server.js');
+
+server.get('*', (req, res) => {
+  const context = { url: req.url };
+
+  renderer.renderToString(context, (err, html) => {
+    if (err) {
+      if (err.code === 404) {
+        res.status(404).end('Page not found');
+      } else {
+        res.status(500).end('Internal Server Error');
+      }
+    } else {
+      res.end(html);
+    }
+  })
+});
+
+module.exports.test = serverless(server);
